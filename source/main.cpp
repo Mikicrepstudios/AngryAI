@@ -16,6 +16,8 @@ int main(int argc, char* argv[]) {
     sdlSettings.renderer = SDL_CreateRenderer(sdlSettings.window, -1, 0);
     SDL_Event event = {};
 
+    
+
     while(running) {
         while(SDL_PollEvent(&event) != 0) {
             sdlSettings.event = event;
