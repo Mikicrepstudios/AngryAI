@@ -7,6 +7,7 @@
 #include "draw.h"
 #include "player.h"
 #include "settings.h"
+#include "textures.h"
 
 int main(int argc, char* argv[]) {
     // Important vars
@@ -28,6 +29,9 @@ int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_VIDEO);
 	TTF_Init();
     IMG_Init(IMG_INIT_PNG);
+
+    // Textures
+    textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
 
     while(running) {
         // Get mouse state
@@ -53,7 +57,7 @@ int main(int argc, char* argv[]) {
 
         // Draw stuff
         draw::DrawRect(sdlSettings.renderer, {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize}, 255, 255, 255);
-        draw::DrawEntities(sdlSettings);
+        draw::DrawEntities(sdlSettings, entityTextures);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);

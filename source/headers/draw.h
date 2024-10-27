@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 
 #include "settings.h"
+#include "textures.h"
 
 namespace draw {
     // Core
@@ -12,5 +13,5 @@ namespace draw {
 	extern void DrawText(SDL_Renderer* renderer, TTF_Font* font, SDL_Rect rect, const char* text, SDL_Color color);
 
     // Game
-    extern void DrawEntities(settings::SDL_Settings sdlSettings);
+    extern void DrawEntities(settings::SDL_Settings sdlSettings, textures::EntityTextures &entityTextures);
 }

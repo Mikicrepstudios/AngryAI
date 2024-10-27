@@ -3,14 +3,12 @@
 
 #include "draw.h"
 #include "settings.h"
+#include "textures.h"
 
 namespace draw {
-    void DrawEntities(settings::SDL_Settings sdlSettings) {
+    void DrawEntities(settings::SDL_Settings sdlSettings, textures::EntityTextures &entityTextures) {
         // Player rect
         SDL_Rect playerRect = {25, sdlSettings.height - 150, 125, 125};
-        SDL_Surface* playerSurface = IMG_Load("assets/player.png");
-        SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(sdlSettings.renderer, playerSurface);
-        SDL_FreeSurface(playerSurface);
 
         // Enemies
         SDL_Rect entityTopRect = {sdlSettings.width - 175, 25, 150, 150};
@@ -18,7 +16,7 @@ namespace draw {
         SDL_Rect entityBottomRect = {sdlSettings.width - 175, sdlSettings.height - 175, 150, 150};
 
         // Draw player
-        draw::DrawTextureRect(sdlSettings.renderer, playerRect, playerTexture);
+        draw::DrawTextureRect(sdlSettings.renderer, playerRect, entityTextures.playerTexture);
 
         // Draw enemies
         draw::DrawRect(sdlSettings.renderer, entityTopRect, 0, 212, 85);
