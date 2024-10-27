@@ -19,8 +19,8 @@ namespace draw {
         draw::DrawTextureRect(sdlSettings.renderer, playerRect, entityTextures.playerTexture);
 
         // Draw enemies
-        draw::DrawRect(sdlSettings.renderer, entityTopRect, 0, 212, 85);
-        draw::DrawRect(sdlSettings.renderer, entityMiddleRect, 0, 86, 191);
-        draw::DrawRect(sdlSettings.renderer, entityBottomRect, 89, 23, 255);
+        draw::DrawTextureRect(sdlSettings.renderer, entityTopRect, entityTextures.gptTexture);
+        draw::DrawTextureRect(sdlSettings.renderer, entityMiddleRect, entityTextures.copilotTexture);
+        draw::DrawTextureRect(sdlSettings.renderer, entityBottomRect, entityTextures.geminiTexture);
     }
 }
