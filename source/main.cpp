@@ -1,5 +1,6 @@
 #include "SDL2/SDL.h"
 
+#include "draw.h"
 #include "settings.h"
 
 int main(int argc, char* argv[]) {
@@ -11,7 +12,7 @@ int main(int argc, char* argv[]) {
     settings::SDL_Settings sdlSettings = {};
 
     // SDL stuff
-    sdlSettings.window = SDL_CreateWindow("Angry AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 800, 0);
+    sdlSettings.window = SDL_CreateWindow("Angry AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sdlSettings.width, sdlSettings.height, 0);
     sdlSettings.renderer = SDL_CreateRenderer(sdlSettings.window, -1, 0);
     SDL_Event event = {};
 
@@ -27,6 +28,9 @@ int main(int argc, char* argv[]) {
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
         SDL_RenderClear(sdlSettings.renderer);
+
+        // Draw stuff
+        draw::DrawEntities(sdlSettings);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
