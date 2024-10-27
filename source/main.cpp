@@ -1,4 +1,6 @@
 #include "SDL2/SDL.h"
+#include <SDL_ttf.h>
+#include <SDL_image.h>
 
 #include "draw.h"
 #include "settings.h"
@@ -16,7 +18,9 @@ int main(int argc, char* argv[]) {
     sdlSettings.renderer = SDL_CreateRenderer(sdlSettings.window, -1, 0);
     SDL_Event event = {};
 
-    
+	SDL_Init(SDL_INIT_VIDEO);
+	TTF_Init();
+    IMG_Init(IMG_INIT_PNG);
 
     while(running) {
         while(SDL_PollEvent(&event) != 0) {
