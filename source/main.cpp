@@ -2,7 +2,7 @@
 
 #include "settings.h"
 
-int main() {
+int main(int argc, char* argv[]) {
     // Important vars
     bool running = true;
     int fps = 60;
