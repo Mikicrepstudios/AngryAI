@@ -7,8 +7,21 @@ namespace settings {
         int width = 1280;
         int height = 800;
 
+        int mouseX = 0;
+        int mouseY = 0;
+
         SDL_Window* window = {};
         SDL_Renderer* renderer = {};
         SDL_Event event = {};
+    };
+
+    struct Bullet {
+        int x = 0;
+        int y = 0;
+
+        float velX = 0;
+        float velY = 0;
+
+        float gravity = 0.92f;
     };
 }
