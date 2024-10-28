@@ -27,4 +27,14 @@ namespace textures {
 
         return textures;
     }
+
+    AssetsTextures initAssets(SDL_Renderer* &renderer) {
+        AssetsTextures textures = {};
+
+        SDL_Surface* assetsSurface = IMG_Load("assets/bullet.png");
+        textures.bulletTexture = SDL_CreateTextureFromSurface(renderer, assetsSurface);
+        SDL_FreeSurface(assetsSurface);
+
+        return textures;
+    }
 }

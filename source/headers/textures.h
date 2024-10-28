@@ -11,6 +11,10 @@ namespace textures {
         SDL_Texture* copilotTexture = {};
         SDL_Texture* geminiTexture = {};
     };
+    struct AssetsTextures {
+        SDL_Texture* bulletTexture = {};
+    };
 
     EntityTextures initEntity(SDL_Renderer* &renderer);
+    AssetsTextures initAssets(SDL_Renderer* &renderer);
 }

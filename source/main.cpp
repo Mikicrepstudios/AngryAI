@@ -32,6 +32,7 @@ int main(int argc, char* argv[]) {
 
     // Textures
     textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
+    textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
 
     while(running) {
         // Get mouse state
@@ -56,7 +57,8 @@ int main(int argc, char* argv[]) {
         SDL_RenderClear(sdlSettings.renderer);
 
         // Draw stuff
-        draw::DrawRect(sdlSettings.renderer, {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize}, 255, 255, 255);
+        SDL_Rect bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
+        draw::DrawTextureRect(sdlSettings.renderer, bulletRect, assetsTextures.bulletTexture);
         draw::DrawEntities(sdlSettings, entityTextures);
 
         // Show stuff
