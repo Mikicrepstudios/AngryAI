@@ -4,7 +4,7 @@
 
 namespace logic {
     void generateAIs(data::AI AIs[3], int AIOrder[3], int level) {
-        for (int x = 0; x <= 3; x++) {
+        for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {
                 AIs[x].type = 1;
                 AIs[x].health = 150 * (1.2 * level);

@@ -14,7 +14,7 @@ namespace draw {
 
         // Draw enemies
         SDL_Rect curRect = {};
-        for(int x = 0; x <= 3; x++) {
+        for(int x = 0; x <= 2; x++) {
             if(x == 0) curRect = entityRects.topEnemyRect;
             else if(x == 1) curRect = entityRects.middleEnemyRect;
             else if(x == 2) curRect = entityRects.bottomEnemyRect;
