@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 
         // Draw stuff
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
-        draw::DrawEntities(sdlSettings, entityTextures, entityRects, AIOrder);
+        draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
