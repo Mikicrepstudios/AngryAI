@@ -6,6 +6,7 @@
 
 #include "draw.h"
 #include "player.h"
+#include "rects.h"
 #include "settings.h"
 #include "textures.h"
 
@@ -20,6 +21,9 @@ int main(int argc, char* argv[]) {
     // Structs
     settings::SDL_Settings sdlSettings = {};
     settings::Bullet bullet = {};
+
+    // Rects
+    rects::EntityRects entityRects = rects::initEntity(sdlSettings);
 
     // SDL stuff
     sdlSettings.window = SDL_CreateWindow("Angry AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sdlSettings.width, sdlSettings.height, 0);
@@ -59,7 +63,7 @@ int main(int argc, char* argv[]) {
         // Draw stuff
         SDL_Rect bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
         draw::DrawTextureRect(sdlSettings.renderer, bulletRect, assetsTextures.bulletTexture);
-        draw::DrawEntities(sdlSettings, entityTextures);
+        draw::DrawEntities(sdlSettings, entityTextures, entityRects);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
