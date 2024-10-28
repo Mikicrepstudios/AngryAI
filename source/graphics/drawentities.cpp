@@ -7,13 +7,20 @@
 #include "textures.h"
 
 namespace draw {
-    void DrawEntities(settings::SDL_Settings sdlSettings, textures::EntityTextures &entityTextures, rects::EntityRects entityRects) {
+    void DrawEntities(settings::SDL_Settings sdlSettings, textures::EntityTextures &entityTextures, rects::EntityRects entityRects, int AIOrder[3]) {
         // Draw player
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.playerRect, entityTextures.playerTexture);
 
         // Draw enemies
-        draw::DrawTextureRect(sdlSettings.renderer, entityRects.topEnemyRect, entityTextures.gptTexture);
-        draw::DrawTextureRect(sdlSettings.renderer, entityRects.middleEnemyRect, entityTextures.copilotTexture);
-        draw::DrawTextureRect(sdlSettings.renderer, entityRects.bottomEnemyRect, entityTextures.geminiTexture);
+        SDL_Rect curRect = {};
+        for(int x = 0; x <= 3; x++) {
+            if(x == 0) curRect = entityRects.topEnemyRect;
+            else if(x == 1) curRect = entityRects.middleEnemyRect;
+            else if(x == 2) curRect = entityRects.bottomEnemyRect;
+
+            if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, curRect, entityTextures.gptTexture);
+            else if(AIOrder[x] == 2) draw::DrawTextureRect(sdlSettings.renderer, curRect, entityTextures.copilotTexture);
+            else if(AIOrder[x] == 3) draw::DrawTextureRect(sdlSettings.renderer, curRect, entityTextures.geminiTexture);
+        }
     }
 }

@@ -4,6 +4,7 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 
+#include "data.h"
 #include "draw.h"
 #include "player.h"
 #include "logic.h"
@@ -17,12 +18,20 @@ int main(int argc, char* argv[]) {
     int fps = 60;
 
     // Settings
+    int level = 1;
     int bulletSize = 50;
     int bulletTouching = 0;
 
     // Structs
     settings::SDL_Settings sdlSettings = {};
     settings::Bullet bullet = {};
+
+    data::Player player = {};
+    data::AI AIs[3] = {};
+    int AIOrder[3] = {};
+    AIOrder[0] = 1;
+    AIOrder[1] = 2;
+    AIOrder[2] = 3;
 
     // Rects
     rects::EntityRects entityRects = rects::initEntity(sdlSettings);
@@ -39,6 +48,9 @@ int main(int argc, char* argv[]) {
     // Textures
     textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
     textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
+
+    // Preparations
+    logic::generateAIs(AIs, AIOrder, level);
 
     while(running) {
         // Get mouse state
@@ -59,7 +71,9 @@ int main(int argc, char* argv[]) {
         player::UpdateBullet(bullet);
         entityRects.bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
         bulletTouching = logic::checkBulletTouching(entityRects);
-        std::cout << bulletTouching << std::endl;
+        if(bulletTouching != 0) bullet.y = 4000;
+
+        if(bulletTouching != 0) logic::damageAI(AIs, bulletTouching, 50);
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
@@ -67,7 +81,7 @@ int main(int argc, char* argv[]) {
 
         // Draw stuff
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
-        draw::DrawEntities(sdlSettings, entityTextures, entityRects);
+        draw::DrawEntities(sdlSettings, entityTextures, entityRects, AIOrder);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
