@@ -2,7 +2,7 @@
 
 namespace data {
     struct Player {
-        int maxHP = 1000;
+        int maxHealth = 1000;
         int health = 0;
 
         int minDamage = 40;
@@ -13,6 +13,7 @@ namespace data {
 
     struct AI {
         int type = 0;
+        int maxHealth = 0;
         int health = 0;
 
         int damage = 0;

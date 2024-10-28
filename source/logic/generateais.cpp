@@ -7,20 +7,21 @@ namespace logic {
         for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {
                 AIs[x].type = 1;
-                AIs[x].health = 150 * (1.2 * level);
+                AIs[x].maxHealth = 150 * (1.2 * level);
                 AIs[x].missChance = 25;
             }
             else if(AIOrder[x] == 2) {
                 AIs[x].type = 2;
-                AIs[x].health = 250 * (1.1 * level);
+                AIs[x].maxHealth = 250 * (1.1 * level);
                 AIs[x].missChance = 50;
             }
             else if(AIOrder[x] == 3) {
                 AIs[x].type = 3;
-                AIs[x].health = 250 * (1.1 * level);
+                AIs[x].maxHealth = 250 * (1.1 * level);
                 AIs[x].missChance = 50;
             }
 
+            AIs[x].health = AIs[x].maxHealth;
             AIs[x].damage = 50 * (1.05 * level);
         }
     }

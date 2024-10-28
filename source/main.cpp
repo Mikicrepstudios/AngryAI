@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
     textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
 
     // Preparations
+    player.health = player.maxHealth;
     logic::generateAIs(AIs, AIOrder, level);
 
     while(running) {
@@ -82,6 +83,7 @@ int main(int argc, char* argv[]) {
 
         // Draw stuff
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
+        draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
 
         // Show stuff
