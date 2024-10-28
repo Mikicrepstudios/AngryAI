@@ -22,6 +22,6 @@ namespace settings {
         float velX = 0;
         float velY = 0;
 
-        float gravity = 0.92f;
+        float gravity = 0.5f;
     };
 }
