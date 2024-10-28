@@ -6,6 +6,7 @@
 
 #include "draw.h"
 #include "player.h"
+#include "logic.h"
 #include "rects.h"
 #include "settings.h"
 #include "textures.h"
@@ -17,6 +18,7 @@ int main(int argc, char* argv[]) {
 
     // Settings
     int bulletSize = 50;
+    int bulletTouching = 0;
 
     // Structs
     settings::SDL_Settings sdlSettings = {};
@@ -55,14 +57,16 @@ int main(int argc, char* argv[]) {
 
         // Logic
         player::UpdateBullet(bullet);
+        entityRects.bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
+        bulletTouching = logic::checkBulletTouching(entityRects);
+        std::cout << bulletTouching << std::endl;
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
         SDL_RenderClear(sdlSettings.renderer);
 
         // Draw stuff
-        SDL_Rect bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
-        draw::DrawTextureRect(sdlSettings.renderer, bulletRect, assetsTextures.bulletTexture);
+        draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
         draw::DrawEntities(sdlSettings, entityTextures, entityRects);
 
         // Show stuff

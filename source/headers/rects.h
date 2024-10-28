@@ -11,6 +11,8 @@ namespace rects {
         SDL_Rect topEnemyRect = {};
         SDL_Rect middleEnemyRect = {};
         SDL_Rect bottomEnemyRect = {};
+
+        SDL_Rect bulletRect = {};
     };
 
     EntityRects initEntity(settings::SDL_Settings sdlSettings);
