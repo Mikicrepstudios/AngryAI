@@ -1,1 +1,1 @@
-wc -l source/* source/*/* source/*/*/*
+wc -l source/* source/*/*
