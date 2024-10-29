@@ -1,7 +1,9 @@
 #include "data.h"
+#include "draw.h"
 #include "logic.h"
 #include "rects.h"
 #include "settings.h"
+#include "textures.h"
 
 namespace logic {
     void damageAI(data::Player &player, data::AI AIs[3], int target, int minDamage, int maxDamage, settings::Bullet &bullet, int shieldedAIOrder[3], int &turn) {
@@ -23,16 +25,20 @@ namespace logic {
         }
     }
 
-    void specialDamageAI(settings::SDL_Settings sdlSettings, data::Player &player, data::AI AIs[3], rects::EntityRects entityRects) {
+    void specialDamageAI(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], rects::EntityRects entityRects, bool &isAttackedAI, int &attackedAI) {
         if(player.curCharge == player.maxCharge) {
             SDL_Rect mouseRect = {sdlSettings.mouseX, sdlSettings.mouseY, 1, 1};
-            int target = 0;
+            SDL_Rect selRect = {};
 
-            if(logic::areRectsTouching(mouseRect, entityRects.topEnemyRect)) target = 1;
-            else if(logic::areRectsTouching(mouseRect, entityRects.middleEnemyRect)) target = 2;
-            else if(logic::areRectsTouching(mouseRect, entityRects.bottomEnemyRect)) target = 3;
+            if(logic::areRectsTouching(mouseRect, entityRects.topEnemyRect)) {attackedAI = 0;}
+            else if(logic::areRectsTouching(mouseRect, entityRects.middleEnemyRect)) {attackedAI = 1;}
+            else if(logic::areRectsTouching(mouseRect, entityRects.bottomEnemyRect)) {attackedAI = 2;}
 
-            
+            if(attackedAI != 3) {
+                AIs[attackedAI].health -= 100;
+                player.curCharge = 0;
+                isAttackedAI = true;
+            }
         }
     }
 }

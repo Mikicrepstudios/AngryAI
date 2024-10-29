@@ -8,6 +8,8 @@
         "unordered_map": "cpp",
         "vector": "cpp",
         "drawtrajectory": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp"
     }
 }

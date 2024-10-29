@@ -23,6 +23,9 @@ int main(int argc, char* argv[]) {
     int bulletSize = 50;
     int bulletTouching = 0;
 
+    bool isAttackedAI = false;
+    int attackedAI = 0;
+
     // Structs
     settings::SDL_Settings sdlSettings = {};
     settings::Bullet bullet = {};
@@ -69,7 +72,8 @@ int main(int argc, char* argv[]) {
                 if(event.key.keysym.sym == SDLK_ESCAPE) running = false;
             }
 
-            if(event.type == SDL_MOUSEBUTTONDOWN) player::Shoot(sdlSettings, bullet);
+            if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) player::Shoot(sdlSettings, bullet);
+            else if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) logic::specialDamageAI(sdlSettings, player, AIs, entityRects, isAttackedAI, attackedAI);
         }
 
         // Logic
@@ -93,6 +97,23 @@ int main(int argc, char* argv[]) {
 
         // Attack
         logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
+
+        // Player special
+        if(isAttackedAI) {
+            SDL_Rect curRect = {};
+            
+            if(attackedAI == 0) curRect = entityRects.topEnemyRect;
+            else if(attackedAI == 1) curRect = entityRects.middleEnemyRect;
+            else if(attackedAI == 2) curRect = entityRects.bottomEnemyRect;
+
+            draw::DrawTextureRect(sdlSettings.renderer, curRect, specialsTextures.playerSpecial);
+
+            attackedAI = 3;
+            isAttackedAI = false;
+
+            SDL_RenderPresent(sdlSettings.renderer);
+            SDL_Delay(750);
+        }
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
