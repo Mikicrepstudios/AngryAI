@@ -17,7 +17,7 @@ namespace logic {
                     // First if is dodging, second if is attacking
                     if(logic::generateRandomNumber(1, AIs[x].missChance) != 1 && AIs[x].curCharge != AIs[x].maxCharge) {
                         player.health -= AIs[x].damage;
-                        AIs[x].curCharge += 1;
+                        AIs[x].curCharge++;
                         if(player.health < 0) player.health = 0;
 
                         if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);

@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
         bulletTouching = logic::checkBulletTouching(entityRects);
         if(bulletTouching != 0) bullet.y = 4000;
 
-        if(bulletTouching != 0) {logic::damageAI(AIs, bulletTouching, player.minDamage, player.maxDamage); turn = 1;}
+        if(bulletTouching != 0) {logic::damageAI(player, AIs, bulletTouching, player.minDamage, player.maxDamage); turn = 1;}
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);

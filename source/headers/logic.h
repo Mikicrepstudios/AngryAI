@@ -16,6 +16,6 @@ namespace logic {
 
     extern int checkBulletTouching(rects::EntityRects entityRects);
 
-    extern void damageAI(data::AI AIs[3], int target, int minDamage, int maxDamage);
+    extern void damageAI(data::Player &player, data::AI AIs[3], int target, int minDamage, int maxDamage);
     extern void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int &turn, textures::DamageTextures damageTextures);
 }
