@@ -15,5 +15,12 @@ namespace rects {
         SDL_Rect bulletRect = {};
     };
 
+    struct ShieldRects {
+        SDL_Rect topShield = {};
+        SDL_Rect middleShield = {};
+        SDL_Rect bottomShield = {};
+    };
+
     EntityRects initEntity(settings::SDL_Settings sdlSettings);
+    ShieldRects initShield(settings::SDL_Settings sdlSettings);
 }

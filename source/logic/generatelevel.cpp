@@ -2,11 +2,15 @@
 #include "logic.h"
 
 namespace logic {
-    void generateLevel(data::Player &player, data::AI AIs[3], int AIOrder[3], int level) {
+    void generateLevel(data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int level) {
         player.health = player.maxHealth;
         AIOrder[0] = logic::generateRandomNumber(1, 3);
         AIOrder[1] = logic::generateRandomNumber(1, 3);
         AIOrder[2] = logic::generateRandomNumber(1, 3);
+        
+        shieldedAIOrder[0] = 0;
+        shieldedAIOrder[1] = 0;
+        shieldedAIOrder[2] = 0;
 
         for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {

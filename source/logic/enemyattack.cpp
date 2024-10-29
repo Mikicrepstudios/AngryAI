@@ -42,12 +42,14 @@ namespace logic {
                         // Copilot
                         else if(AIOrder[x] == 2) {
                             player.health -= 100;
+                            if(player.health < 0) player.health = 0;
                             draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.copilotSpecial);
                         }
 
                         // Gemini
                         else if(AIOrder[x] == 3) {
                             player.health -= logic::generateRandomNumber(0, 200);
+                            if(player.health < 0) player.health = 0;
                             draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.geminiSpecial);
                         }
 

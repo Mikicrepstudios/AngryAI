@@ -34,6 +34,7 @@ int main(int argc, char* argv[]) {
 
     // Rects
     rects::EntityRects entityRects = rects::initEntity(sdlSettings);
+    rects::ShieldRects shieldRects = rects::initShield(sdlSettings);
 
     // SDL stuff
     sdlSettings.window = SDL_CreateWindow("Angry AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sdlSettings.width, sdlSettings.height, 0);
@@ -53,9 +54,9 @@ int main(int argc, char* argv[]) {
     while(running) {
         if(player.health == 0) {
             level = 1;
-            logic::generateLevel(player, AIs, AIOrder, level);
+            logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level);
         }
-        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, level);
+        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level);
 
         // Get mouse state
         SDL_GetMouseState(&sdlSettings.mouseX, &sdlSettings.mouseY);
@@ -74,10 +75,10 @@ int main(int argc, char* argv[]) {
         // Logic
         player::UpdateBullet(bullet);
         entityRects.bulletRect = {bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize};
-        bulletTouching = logic::checkBulletTouching(entityRects);
-        if(bulletTouching != 0) bullet.y = 4000;
+        bulletTouching = logic::checkBulletTouching(entityRects, shieldRects);
+        if(bulletTouching != 0 && bulletTouching < 4) bullet.y = 4000;
 
-        if(bulletTouching != 0) {logic::damageAI(player, AIs, bulletTouching, player.minDamage, player.maxDamage); turn = 1;}
+        if(bulletTouching != 0) logic::damageAI(player, AIs, bulletTouching, player.minDamage, player.maxDamage, bullet, shieldedAIOrder, turn);
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
@@ -88,6 +89,7 @@ int main(int argc, char* argv[]) {
         draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
         draw::DrawSpecialBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
+        draw::DrawShields(sdlSettings, shieldRects, specialsTextures, shieldedAIOrder);
 
         // Attack
         logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);

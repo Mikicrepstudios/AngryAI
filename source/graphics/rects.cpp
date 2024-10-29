@@ -12,4 +12,14 @@ namespace rects {
 
         return rects;
     }
+
+    ShieldRects initShield(settings::SDL_Settings sdlSettings) {
+        ShieldRects rects = {};
+
+        rects.topShield = {sdlSettings.width - 270, -5, 90, 220};
+        rects.middleShield = {sdlSettings.width - 270, sdlSettings.height / 2 - 105, 90, 220};
+        rects.bottomShield = {sdlSettings.width - 270, sdlSettings.height - 205, 90, 220};
+
+        return rects;
+    }
 }
