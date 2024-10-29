@@ -13,6 +13,9 @@
 #include "textures.h"
 
 int main(int argc, char* argv[]) {
+    std::cout << "Angry AI - 1.0" << std::endl;
+    std::cout << "Copyright Mikicrep Studios 2024" << std::endl;
+
     // Important vars
     bool running = true;
     int fps = 60;
