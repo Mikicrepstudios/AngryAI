@@ -19,6 +19,7 @@ int main(int argc, char* argv[]) {
 
     // Settings
     int level = 1;
+    int turn = 0;
     int bulletSize = 50;
     int bulletTouching = 0;
 
@@ -74,8 +75,7 @@ int main(int argc, char* argv[]) {
         bulletTouching = logic::checkBulletTouching(entityRects);
         if(bulletTouching != 0) bullet.y = 4000;
 
-        if(bulletTouching != 0) logic::damageAI(AIs, bulletTouching, 50);
-        std::cout << AIs[0].health << " " << AIs[1].health << " " << AIs[2].health << std::endl;
+        if(bulletTouching != 0) logic::damageAI(AIs, bulletTouching, player.minDamage, player.maxDamage);
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
