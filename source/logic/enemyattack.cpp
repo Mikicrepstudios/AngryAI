@@ -12,6 +12,7 @@ namespace logic {
 
             for(int x = 0; x < 3; x++) {
                 player.health -= AIs[x].damage;
+                if(player.health < 0) player.health = 0;
 
                 if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
                 else if(AIOrder[x] == 2) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.copilotAttack);
