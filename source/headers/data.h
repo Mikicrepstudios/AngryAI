@@ -2,11 +2,11 @@
 
 namespace data {
     struct Player {
-        int maxHealth = 1000;
+        int maxHealth = 1500;
         int health = 0;
 
         int minDamage = 40;
-        int maxDamage = 60;
+        int maxDamage = 65;
 
         int maxCharge = 3;
         int curCharge = 0;
