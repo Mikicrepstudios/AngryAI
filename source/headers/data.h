@@ -8,6 +8,7 @@ namespace data {
         int minDamage = 40;
         int maxDamage = 60;
 
+        int maxCharge = 3;
         int curCharge = 0;
     };
 

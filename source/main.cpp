@@ -84,6 +84,7 @@ int main(int argc, char* argv[]) {
         // Draw stuff
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
         draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
+        draw::DrawSpecialBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
 
         // Attack

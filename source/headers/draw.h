@@ -15,5 +15,6 @@ namespace draw {
 
     // Game
 	extern void DrawHPBars(settings::SDL_Settings &sdlSettings, data::Player player, data::AI AIs[3], rects::EntityRects entityRects);
+	extern void DrawSpecialBars(settings::SDL_Settings &sdlSettings, data::Player player, data::AI AIs[3], rects::EntityRects entityRects);
     extern void DrawEntities(settings::SDL_Settings sdlSettings, data::AI AIs[3], int AIOrder[3], textures::EntityTextures &entityTextures, rects::EntityRects entityRects);
 }
