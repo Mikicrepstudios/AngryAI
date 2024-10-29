@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
         bulletTouching = logic::checkBulletTouching(entityRects);
         if(bulletTouching != 0) bullet.y = 4000;
 
-        if(bulletTouching != 0) logic::damageAI(AIs, bulletTouching, player.minDamage, player.maxDamage);
+        if(bulletTouching != 0) {logic::damageAI(AIs, bulletTouching, player.minDamage, player.maxDamage); turn = 1;}
 
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
@@ -86,6 +86,9 @@ int main(int argc, char* argv[]) {
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
         draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
+
+        // Attack
+        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, turn, damageTextures);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
