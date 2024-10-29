@@ -36,6 +36,7 @@ namespace logic {
 
             if(attackedAI != 3) {
                 AIs[attackedAI].health -= 100;
+                if(AIs[attackedAI].health < 0) AIs[attackedAI].health = 0;
                 player.curCharge = 0;
                 isAttackedAI = true;
             }
