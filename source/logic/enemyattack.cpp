@@ -7,7 +7,7 @@
 #include "textures.h"
 
 namespace logic {
-    void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures) {
+    void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures) {
         if(turn == 1) {
             SDL_Rect damageRect = {175, sdlSettings.height - 175, 500, 150};
             SDL_Rect dodgeRect = {25, sdlSettings.height - 325, 500, 150};
@@ -32,7 +32,11 @@ namespace logic {
                     else if(AIs[x].curCharge == AIs[x].maxCharge) {
                         // GPT
                         if(AIOrder[x] == 1) {
+                            int firstShield = logic::generateRandomNumber(0, 2);
+                            int secondShield = logic::generateRandomNumber(0, 2);
 
+                            shieldedAIOrder[firstShield] = 1;
+                            shieldedAIOrder[secondShield] = 1;
                         }
 
                         // Copilot
@@ -49,8 +53,10 @@ namespace logic {
 
                         AIs[x].curCharge = 0;
 
-                        SDL_RenderPresent(sdlSettings.renderer);
-                        SDL_Delay(500);
+                        if(AIOrder[x] != 1) {
+                            SDL_RenderPresent(sdlSettings.renderer);
+                            SDL_Delay(500);
+                        }
                     }
                     // Draw dodged text if player dodged attack
                     else {

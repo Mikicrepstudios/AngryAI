@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
     data::Player player = {};
     data::AI AIs[3] = {};
     int AIOrder[3] = {};
+    int shieldedAIOrder[3] = {};
 
     // Rects
     rects::EntityRects entityRects = rects::initEntity(sdlSettings);
@@ -89,7 +90,7 @@ int main(int argc, char* argv[]) {
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
 
         // Attack
-        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, turn, damageTextures, specialsTextures);
+        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
