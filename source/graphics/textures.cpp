@@ -37,4 +37,28 @@ namespace textures {
 
         return textures;
     }
+
+    DamageTextures initDamage(SDL_Renderer* &renderer) {
+        DamageTextures textures = {};
+
+
+        SDL_Surface* playerSurface = IMG_Load("assets/playerattack.png");
+        textures.playerAttack = SDL_CreateTextureFromSurface(renderer, playerSurface);
+        SDL_FreeSurface(playerSurface);
+
+
+        SDL_Surface* gptSurface = IMG_Load("assets/gptattack.png");
+        textures.gptAttack = SDL_CreateTextureFromSurface(renderer, gptSurface);
+        SDL_FreeSurface(gptSurface);
+        
+        SDL_Surface* copilotSurface = IMG_Load("assets/copilotattack.png");
+        textures.copilotAttack = SDL_CreateTextureFromSurface(renderer, copilotSurface);
+        SDL_FreeSurface(copilotSurface);
+
+        SDL_Surface* geminiSurface = IMG_Load("assets/geminiattack.png");
+        textures.geminiAttack = SDL_CreateTextureFromSurface(renderer, geminiSurface);
+        SDL_FreeSurface(geminiSurface);
+
+        return textures;
+    }
 }

@@ -14,7 +14,15 @@ namespace textures {
     struct AssetsTextures {
         SDL_Texture* bulletTexture = {};
     };
+    struct DamageTextures {
+        SDL_Texture* playerAttack = {};
+
+        SDL_Texture* gptAttack = {};
+        SDL_Texture* copilotAttack = {};
+        SDL_Texture* geminiAttack = {};
+    };
 
     EntityTextures initEntity(SDL_Renderer* &renderer);
     AssetsTextures initAssets(SDL_Renderer* &renderer);
+    DamageTextures initDamage(SDL_Renderer* &renderer);
 }
