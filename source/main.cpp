@@ -51,11 +51,12 @@ int main(int argc, char* argv[]) {
     textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
     textures::DamageTextures damageTextures = textures::initDamage(sdlSettings.renderer);
 
-    // Preparations
-    player.health = player.maxHealth;
-    logic::generateAIs(AIs, AIOrder, level);
-
     while(running) {
+        if(player.health == 0) {
+            level = 1;
+            logic::generateLevel(player, AIs, AIOrder, level);
+        }
+
         // Get mouse state
         SDL_GetMouseState(&sdlSettings.mouseX, &sdlSettings.mouseY);
 

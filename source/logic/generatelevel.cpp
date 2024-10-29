@@ -3,7 +3,9 @@
 #include "data.h"
 
 namespace logic {
-    void generateAIs(data::AI AIs[3], int AIOrder[3], int level) {
+    void generateLevel(data::Player &player, data::AI AIs[3], int AIOrder[3], int level) {
+        player.health = player.maxHealth;
+
         for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {
                 AIs[x].type = 1;
