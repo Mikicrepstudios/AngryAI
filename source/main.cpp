@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     int fps = 60;
 
     // Settings
-    int level = 1;
+    int level = 0;
     int turn = 0;
     int bulletSize = 50;
     int bulletTouching = 0;
@@ -30,9 +30,6 @@ int main(int argc, char* argv[]) {
     data::Player player = {};
     data::AI AIs[3] = {};
     int AIOrder[3] = {};
-    AIOrder[0] = 1;
-    AIOrder[1] = 2;
-    AIOrder[2] = 3;
 
     // Rects
     rects::EntityRects entityRects = rects::initEntity(sdlSettings);
@@ -56,6 +53,7 @@ int main(int argc, char* argv[]) {
             level = 1;
             logic::generateLevel(player, AIs, AIOrder, level);
         }
+        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, level);
 
         // Get mouse state
         SDL_GetMouseState(&sdlSettings.mouseX, &sdlSettings.mouseY);
