@@ -28,8 +28,8 @@ namespace draw {
 
         draw::DrawRect(sdlSettings.renderer, pFillRect, 3, 86, 252);
 
-        draw::DrawRect(sdlSettings.renderer, tFillRect, 3, 86, 252);
-        draw::DrawRect(sdlSettings.renderer, mFillRect, 3, 86, 252);
-        draw::DrawRect(sdlSettings.renderer, bFillRect, 3, 86, 252);
+        if(AIs[0].health != 0) draw::DrawRect(sdlSettings.renderer, tFillRect, 3, 86, 252);
+        if(AIs[1].health != 0) draw::DrawRect(sdlSettings.renderer, mFillRect, 3, 86, 252);
+        if(AIs[2].health != 0) draw::DrawRect(sdlSettings.renderer, bFillRect, 3, 86, 252);
     }
 }

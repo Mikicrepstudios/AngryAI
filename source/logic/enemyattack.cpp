@@ -15,8 +15,9 @@ namespace logic {
                 // Is AI breathing?
                 if(AIs[x].health != 0) {
                     // First if is dodging, second if is attacking
-                    if(logic::generateRandomNumber(1, AIs[x].missChance) != 1) {
+                    if(logic::generateRandomNumber(1, AIs[x].missChance) != 1 && AIs[x].curCharge != AIs[x].maxCharge) {
                         player.health -= AIs[x].damage;
+                        AIs[x].curCharge += 1;
                         if(player.health < 0) player.health = 0;
 
                         if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
@@ -25,6 +26,9 @@ namespace logic {
 
                         SDL_RenderPresent(sdlSettings.renderer);
                         SDL_Delay(1000);
+                    }
+                    else if(AIs[x].curCharge == AIs[x].maxCharge) {
+                        AIs[x].curCharge = 0;
                     }
                     // Draw dodged text if player dodged attack
                     else {
