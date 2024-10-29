@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
 
         // Attack
-        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, turn, damageTextures);
+        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, turn, damageTextures, specialsTextures);
 
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);

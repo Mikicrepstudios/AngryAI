@@ -7,7 +7,7 @@
 #include "textures.h"
 
 namespace logic {
-    void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int &turn, textures::DamageTextures damageTextures) {
+    void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures) {
         if(turn == 1) {
             SDL_Rect damageRect = {175, sdlSettings.height - 175, 500, 150};
             SDL_Rect dodgeRect = {25, sdlSettings.height - 325, 500, 150};
@@ -27,7 +27,7 @@ namespace logic {
                         else if(AIOrder[x] == 3) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.geminiAttack);
 
                         SDL_RenderPresent(sdlSettings.renderer);
-                        SDL_Delay(1000);
+                        SDL_Delay(750);
                     }
                     else if(AIs[x].curCharge == AIs[x].maxCharge) {
                         // GPT
@@ -38,14 +38,19 @@ namespace logic {
                         // Copilot
                         else if(AIOrder[x] == 2) {
                             player.health -= 100;
+                            draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.copilotSpecial);
                         }
 
                         // Gemini
                         else if(AIOrder[x] == 3) {
                             player.health -= logic::generateRandomNumber(0, 200);
+                            draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.geminiSpecial);
                         }
 
                         AIs[x].curCharge = 0;
+
+                        SDL_RenderPresent(sdlSettings.renderer);
+                        SDL_Delay(500);
                     }
                     // Draw dodged text if player dodged attack
                     else {
