@@ -66,4 +66,28 @@ namespace textures {
 
         return textures;
     }
+
+    SpecialsTextures initSpecials(SDL_Renderer* &renderer) {
+        SpecialsTextures textures = {};
+
+
+        SDL_Surface* playerSurface = IMG_Load("assets/playerspecial.png");
+        textures.playerSpecial = SDL_CreateTextureFromSurface(renderer, playerSurface);
+        SDL_FreeSurface(playerSurface);
+
+
+        SDL_Surface* gptSurface = IMG_Load("assets/gptspecial.png");
+        textures.gptSpecial = SDL_CreateTextureFromSurface(renderer, gptSurface);
+        SDL_FreeSurface(gptSurface);
+        
+        SDL_Surface* copilotSurface = IMG_Load("assets/copilotspecial.png");
+        textures.copilotSpecial = SDL_CreateTextureFromSurface(renderer, copilotSurface);
+        SDL_FreeSurface(copilotSurface);
+
+        SDL_Surface* geminiSurface = IMG_Load("assets/geminispecial.png");
+        textures.geminiSpecial = SDL_CreateTextureFromSurface(renderer, geminiSurface);
+        SDL_FreeSurface(geminiSurface);
+
+        return textures;
+    }
 }

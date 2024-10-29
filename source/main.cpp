@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
     textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
     textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
     textures::DamageTextures damageTextures = textures::initDamage(sdlSettings.renderer);
+    textures::SpecialsTextures specialsTextures = textures::initSpecials(sdlSettings.renderer);
 
     while(running) {
         if(player.health == 0) {

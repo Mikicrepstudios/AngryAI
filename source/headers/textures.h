@@ -23,8 +23,16 @@ namespace textures {
 
         SDL_Texture* dodgedAttack = {};
     };
+    struct SpecialsTextures {
+        SDL_Texture* playerSpecial = {};
+
+        SDL_Texture* gptSpecial = {};
+        SDL_Texture* copilotSpecial = {};
+        SDL_Texture* geminiSpecial = {};
+    };
 
     EntityTextures initEntity(SDL_Renderer* &renderer);
     AssetsTextures initAssets(SDL_Renderer* &renderer);
     DamageTextures initDamage(SDL_Renderer* &renderer);
+    SpecialsTextures initSpecials(SDL_Renderer* &renderer);
 }
