@@ -12,26 +12,28 @@ namespace logic {
             SDL_Rect damageRect = {175, sdlSettings.height - 175, 500, 150};
 
             for(int x = 0; x < 3; x++) {
-                // First if is dodging, second if is attacking
-                if(logic::generateRandomNumber(1, AIs[x].missChance) != 1) {
-                    player.health -= AIs[x].damage;
-                    if(player.health < 0) player.health = 0;
+                // Is AI breathing?
+                if(AIs[x].health != 0) {
+                    // First if is dodging, second if is attacking
+                    if(logic::generateRandomNumber(1, AIs[x].missChance) != 1) {
+                        player.health -= AIs[x].damage;
+                        if(player.health < 0) player.health = 0;
 
-                    if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
-                    else if(AIOrder[x] == 2) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.copilotAttack);
-                    else if(AIOrder[x] == 3) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.geminiAttack);
+                        if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
+                        else if(AIOrder[x] == 2) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.copilotAttack);
+                        else if(AIOrder[x] == 3) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.geminiAttack);
 
-                    SDL_RenderPresent(sdlSettings.renderer);
-                    SDL_Delay(1000);
+                        SDL_RenderPresent(sdlSettings.renderer);
+                        SDL_Delay(1000);
+                    }
+                    // Draw dodged text if player dodged attack
+                    else {
+                        draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.dodgedAttack);
+
+                        SDL_RenderPresent(sdlSettings.renderer);
+                        SDL_Delay(250);
+                    }
                 }
-                // Draw dodged text if player dodged attack
-                else {
-                    draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.dodgedAttack);
-
-                    SDL_RenderPresent(sdlSettings.renderer);
-                    SDL_Delay(250);
-                }
-
             }
             turn = 0;
         }
