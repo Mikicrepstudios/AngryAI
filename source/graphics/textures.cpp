@@ -59,6 +59,11 @@ namespace textures {
         textures.geminiAttack = SDL_CreateTextureFromSurface(renderer, geminiSurface);
         SDL_FreeSurface(geminiSurface);
 
+
+        SDL_Surface* dodgedSurface = IMG_Load("assets/dodge.png");
+        textures.dodgedAttack = SDL_CreateTextureFromSurface(renderer, dodgedSurface);
+        SDL_FreeSurface(dodgedSurface);
+
         return textures;
     }
 }

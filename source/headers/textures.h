@@ -20,6 +20,8 @@ namespace textures {
         SDL_Texture* gptAttack = {};
         SDL_Texture* copilotAttack = {};
         SDL_Texture* geminiAttack = {};
+
+        SDL_Texture* dodgedAttack = {};
     };
 
     EntityTextures initEntity(SDL_Renderer* &renderer);
