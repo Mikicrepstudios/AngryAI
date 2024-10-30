@@ -1,3 +1,4 @@
+#include <string>
 #include "SDL2/SDL.h"
 
 #include "data.h"
@@ -6,9 +7,13 @@
 #include "settings.h"
 #include "textures.h"
 
+SDL_Rect attackTextRect = {25, 225, 400, 100};
+
 namespace logic {
     void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures) {
         if(turn == 1) {
+            std::string attackText = "";
+
             SDL_Rect damageRect = {175, sdlSettings.height - 175, 500, 150};
             SDL_Rect dodgeRect = {25, sdlSettings.height - 325, 500, 150};
 
@@ -22,9 +27,36 @@ namespace logic {
                         if(player.health < 0) player.health = 0;
 
                         draw::DrawRect(sdlSettings.renderer, dodgeRect, 0, 0, 0); // Clear dodged img
-                        if(AIOrder[x] == 1) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
-                        else if(AIOrder[x] == 2) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.copilotAttack);
-                        else if(AIOrder[x] == 3) draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.geminiAttack);
+
+                        // GPT Attack
+                        if(AIOrder[x] == 1) {
+                            draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.gptAttack);
+
+                            // Text stuff
+                            attackText = "GPT dealt " + std::to_string(AIs[x].damage) + " dmg"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
+                        }
+
+                        // Copilot Attack
+                        else if(AIOrder[x] == 2) {
+                            draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.copilotAttack);
+
+                            // Text stuff
+                            attackText = "Copilot dealt " + std::to_string(AIs[x].damage) + " dmg"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
+                        }
+
+                        // Gemini Attack
+                        else if(AIOrder[x] == 3) {
+                            draw::DrawTextureRect(sdlSettings.renderer, damageRect, damageTextures.geminiAttack);
+
+                            // Text stuff
+                            attackText = "Gemini dealt " + std::to_string(AIs[x].damage) + " dmg"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
+                        }
 
                         SDL_RenderPresent(sdlSettings.renderer);
                         SDL_Delay(750);
@@ -37,6 +69,11 @@ namespace logic {
 
                             shieldedAIOrder[firstShield] = 1;
                             shieldedAIOrder[secondShield] = 1;
+
+                            // Text stuff
+                            attackText = "GPT spawned shields!"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
                         }
 
                         // Copilot
@@ -44,13 +81,25 @@ namespace logic {
                             player.health -= 100;
                             if(player.health < 0) player.health = 0;
                             draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.copilotSpecial);
+
+                            // Text stuff
+                            attackText = "Copilot dealt 100 dmg"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
                         }
 
                         // Gemini
                         else if(AIOrder[x] == 3) {
-                            player.health -= logic::generateRandomNumber(0, 200);
+                            int dmg = logic::generateRandomNumber(0, 200);
+
+                            player.health -= dmg;
                             if(player.health < 0) player.health = 0;
                             draw::DrawTextureRect(sdlSettings.renderer, damageRect, specialsTextures.geminiSpecial);
+
+                            // Text stuff
+                            attackText = "Gemini dealt " + std::to_string(dmg) + " dmg"; 
+                            draw::DrawRect(sdlSettings.renderer, attackTextRect, 100, 100, 100);
+                            draw::DrawText(sdlSettings.renderer, sdlSettings.font, attackTextRect, attackText.c_str(), sdlSettings.textColor);
                         }
 
                         AIs[x].curCharge = 0;
