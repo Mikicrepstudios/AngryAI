@@ -95,14 +95,15 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
         SDL_RenderClear(sdlSettings.renderer);
 
+        // GUI
+        draw::DrawGUI(sdlSettings, level, timeM, timeS);
+
         // Draw stuff
         draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
         draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
         draw::DrawSpecialBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
         draw::DrawShields(sdlSettings, shieldRects, specialsTextures, shieldedAIOrder);
-
-        draw::DrawGUI(sdlSettings, level, timeM, timeS);
 
         // Attack
         logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
