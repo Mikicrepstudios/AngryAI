@@ -61,6 +61,11 @@ int main(int argc, char* argv[]) {
     textures::DamageTextures damageTextures = textures::initDamage(sdlSettings.renderer);
     textures::SpecialsTextures specialsTextures = textures::initSpecials(sdlSettings.renderer);
 
+    // Background
+    SDL_Surface* backgroundSurface = IMG_Load("assets/background.png");
+    SDL_Texture* backgroundTexture = SDL_CreateTextureFromSurface(sdlSettings.renderer, backgroundSurface);
+    SDL_FreeSurface(backgroundSurface);
+
     while(running) {
         if(player.health == 0) {
             level = 1;
@@ -94,6 +99,7 @@ int main(int argc, char* argv[]) {
         // Clear screen
         SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
         SDL_RenderClear(sdlSettings.renderer);
+        draw::DrawTextureRect(sdlSettings.renderer, {0, 0, sdlSettings.width, sdlSettings.height}, backgroundTexture);
 
         // GUI
         draw::DrawGUI(sdlSettings, level, timeM, timeS);
