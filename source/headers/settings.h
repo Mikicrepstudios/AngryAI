@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL2/SDL.h"
+#include <SDL_ttf.h>
 
 namespace settings {
     struct SDL_Settings {
@@ -13,6 +14,9 @@ namespace settings {
         SDL_Window* window = {};
         SDL_Renderer* renderer = {};
         SDL_Event event = {};
+        TTF_Font* font = {};
+        
+        SDL_Color textColor = {255, 255, 255};
     };
 
     struct Bullet {

@@ -49,6 +49,7 @@ int main(int argc, char* argv[]) {
 
 	SDL_Init(SDL_INIT_VIDEO);
 	TTF_Init();
+    sdlSettings.font = TTF_OpenFont("assets/font.ttf", 48);
     IMG_Init(IMG_INIT_PNG);
 
     // Textures
@@ -97,6 +98,8 @@ int main(int argc, char* argv[]) {
         draw::DrawSpecialBars(sdlSettings, player, AIs, entityRects);
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
         draw::DrawShields(sdlSettings, shieldRects, specialsTextures, shieldedAIOrder);
+
+        draw::DrawGUI(sdlSettings, level, 99, 99);
 
         // Attack
         logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
