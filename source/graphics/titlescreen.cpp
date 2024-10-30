@@ -10,6 +10,7 @@ namespace game {
         SDL_Event titleEvent = {};
 
         SDL_Rect titleRect = {sdlSettings.width / 2 - 500 / 2, 0, 500, 200};
+        SDL_Rect descRect = {sdlSettings.width / 2 - 500, sdlSettings.height / 2 + 100, 1000, 50};
         SDL_Rect playRect = {sdlSettings.width / 2 - 400, sdlSettings.height / 2 - 100, 800, 200};
 
         SDL_Rect devRect = {0, sdlSettings.height - 200, 300, 100};
@@ -30,7 +31,9 @@ namespace game {
             draw::DrawText(sdlSettings.renderer, sdlSettings.font, devRect, "Dev: Mikicrep", sdlSettings.textColor);
             draw::DrawText(sdlSettings.renderer, sdlSettings.font, musicRect, "Music: hipersalam", sdlSettings.textColor);
 
+            draw::DrawRect(sdlSettings.renderer, descRect, 100, 100, 100);
             draw::DrawRect(sdlSettings.renderer, playRect, 100, 100, 100);
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, descRect, "Read game description before playing", sdlSettings.textColor);
             draw::DrawText(sdlSettings.renderer, sdlSettings.font, playRect, "Press any mouse button to play", sdlSettings.textColor);
 
             draw::DrawText(sdlSettings.renderer, sdlSettings.font, copyrightRect, "Copyright Mikicrep Studios 2024", sdlSettings.textColor);
