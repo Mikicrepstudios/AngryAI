@@ -13,7 +13,16 @@ SDL_Rect timeRect = {bg.x, bg.y + 100, bg.w, 100};
 namespace draw {
     void DrawGUI(settings::SDL_Settings &sdlSettings, int level, int timeM, int timeS) {
         std::string levelText = "Level: " + std::to_string(level);
-        std::string timeText = "Time: " + std::to_string(timeM) + ":" + std::to_string(timeS);
+
+        std::string timeMtmp = "";
+        if(timeM < 10) timeMtmp = "0" + std::to_string(timeM);
+        else timeMtmp = std::to_string(timeM);
+
+        std::string timeStmp = "";
+        if(timeS < 10) timeStmp = "0" + std::to_string(timeS);
+        else timeStmp = std::to_string(timeS);
+
+        std::string timeText = "Time: " + timeMtmp + ":" + timeStmp;
 
         draw::DrawRect(sdlSettings.renderer, bg, 100, 100, 100);
 

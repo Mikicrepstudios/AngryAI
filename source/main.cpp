@@ -19,6 +19,9 @@ int main(int argc, char* argv[]) {
     // Important vars
     bool running = true;
     int fps = 60;
+    int frame = 0;
+    int timeS = 0;
+    int timeM = 0;
 
     // Settings
     int level = 0;
@@ -49,7 +52,7 @@ int main(int argc, char* argv[]) {
 
 	SDL_Init(SDL_INIT_VIDEO);
 	TTF_Init();
-    sdlSettings.font = TTF_OpenFont("assets/font.ttf", 48);
+    sdlSettings.font = TTF_OpenFont("assets/font.ttf", 96);
     IMG_Init(IMG_INIT_PNG);
 
     // Textures
@@ -61,9 +64,9 @@ int main(int argc, char* argv[]) {
     while(running) {
         if(player.health == 0) {
             level = 1;
-            logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level);
+            logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, timeM, timeS, frame);
         }
-        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level);
+        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, timeM, timeS, frame);
 
         // Get mouse state
         SDL_GetMouseState(&sdlSettings.mouseX, &sdlSettings.mouseY);
@@ -99,7 +102,7 @@ int main(int argc, char* argv[]) {
         draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
         draw::DrawShields(sdlSettings, shieldRects, specialsTextures, shieldedAIOrder);
 
-        draw::DrawGUI(sdlSettings, level, 99, 99);
+        draw::DrawGUI(sdlSettings, level, timeM, timeS);
 
         // Attack
         logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
@@ -124,6 +127,17 @@ int main(int argc, char* argv[]) {
         // Show stuff
         SDL_RenderPresent(sdlSettings.renderer);
         SDL_Delay(1000 / fps);
+
+        frame++;
+        if(frame == fps) {
+            frame = 0;
+            timeS++;
+
+            if(timeS == 60) {
+                timeS = 0;
+                timeM++;
+            }
+        }
     }
 
     return 0;
