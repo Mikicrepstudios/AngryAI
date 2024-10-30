@@ -2,22 +2,37 @@
 #include <SDL_ttf.h>
 
 #include "draw.h"
+#include "logic.h"
 #include "settings.h"
 
 namespace game {
     void titleScreen(settings::SDL_Settings sdlSettings) {
         SDL_Event titleEvent = {};
-        
 
         SDL_Rect titleRect = {sdlSettings.width / 2 - 500 / 2, 0, 500, 200};
+        SDL_Rect playRect = {sdlSettings.width / 2 - 400, sdlSettings.height / 2 - 100, 800, 200};
 
-        SDL_Rect playRect = {sdlSettings.width / 2 - 100, sdlSettings.height / 2 - 100, 200, 200};
+        SDL_Rect devRect = {0, sdlSettings.height - 100, 300, 100};
+        SDL_Rect musicRect = {sdlSettings.width - 300, sdlSettings.height - 100, 300, 100};
 
         bool title = true;
         while(title) {
-            draw::DrawText(sdlSettings.renderer, sdlSettings.font, titleRect, "Angry AI", sdlSettings.textColor);
+            while(SDL_PollEvent(&titleEvent) != 0) {
+                if(titleEvent.type == SDL_MOUSEBUTTONDOWN) title = false;
+            }
 
-            draw::DrawButton(sdlSettings.renderer, playRect, 3, 182, 252, sdlSettings.mouseX, sdlSettings.mouseY);
+            SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 255);
+            SDL_RenderClear(sdlSettings.renderer);
+
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, titleRect, "Angry AI", sdlSettings.textColor);
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, devRect, "Dev: Mikicrep", sdlSettings.textColor);
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, musicRect, "Music: hipersalam", sdlSettings.textColor);
+
+            draw::DrawRect(sdlSettings.renderer, playRect, 100, 100, 100);
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, playRect, "Press any mouse button to play", sdlSettings.textColor);
+
+            SDL_RenderPresent(sdlSettings.renderer);
+            SDL_Delay(1000 / 60);
         }
     }
 }

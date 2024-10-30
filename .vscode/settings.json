@@ -10,6 +10,7 @@
         "drawtrajectory": "cpp",
         "ostream": "cpp",
         "chrono": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "any": "cpp"
     }
 }

@@ -7,6 +7,7 @@
 
 #include "data.h"
 #include "draw.h"
+#include "game.h"
 #include "player.h"
 #include "logic.h"
 #include "rects.h"
@@ -65,6 +66,9 @@ int main(int argc, char* argv[]) {
 
     // SDL Mixer
     Mix_Music *music = Mix_LoadMUS("assets/music.mp3");
+
+    // Title Screen
+    game::titleScreen(sdlSettings);
     Mix_PlayMusic(music, -1);
 
     while(running) {
