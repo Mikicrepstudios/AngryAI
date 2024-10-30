@@ -12,8 +12,10 @@ namespace game {
         SDL_Rect titleRect = {sdlSettings.width / 2 - 500 / 2, 0, 500, 200};
         SDL_Rect playRect = {sdlSettings.width / 2 - 400, sdlSettings.height / 2 - 100, 800, 200};
 
-        SDL_Rect devRect = {0, sdlSettings.height - 100, 300, 100};
-        SDL_Rect musicRect = {sdlSettings.width - 300, sdlSettings.height - 100, 300, 100};
+        SDL_Rect devRect = {0, sdlSettings.height - 200, 300, 100};
+        SDL_Rect musicRect = {sdlSettings.width - 300, sdlSettings.height - 200, 300, 100};
+
+        SDL_Rect copyrightRect = {sdlSettings.width / 2 - 500, sdlSettings.height - 100, 1000, 100};
 
         bool title = true;
         while(title) {
@@ -30,6 +32,8 @@ namespace game {
 
             draw::DrawRect(sdlSettings.renderer, playRect, 100, 100, 100);
             draw::DrawText(sdlSettings.renderer, sdlSettings.font, playRect, "Press any mouse button to play", sdlSettings.textColor);
+
+            draw::DrawText(sdlSettings.renderer, sdlSettings.font, copyrightRect, "Copyright Mikicrep Studios 2024", sdlSettings.textColor);
 
             SDL_RenderPresent(sdlSettings.renderer);
             SDL_Delay(1000 / 60);
