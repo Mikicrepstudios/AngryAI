@@ -12,6 +12,10 @@ namespace logic {
         shieldedAIOrder[1] = 0;
         shieldedAIOrder[2] = 0;
 
+        timeM = 0;
+        timeS = 0;
+        frame = 0;
+
         for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {
                 AIs[x].type = 1;
