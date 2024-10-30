@@ -3,6 +3,7 @@
 #include "SDL2/SDL.h"
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 #include "data.h"
 #include "draw.h"
@@ -50,16 +51,21 @@ int main(int argc, char* argv[]) {
     sdlSettings.renderer = SDL_CreateRenderer(sdlSettings.window, -1, 0);
     SDL_Event event = {};
 
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
     sdlSettings.font = TTF_OpenFont("assets/font.ttf", 96);
     IMG_Init(IMG_INIT_PNG);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
     // Textures
     textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
     textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
     textures::DamageTextures damageTextures = textures::initDamage(sdlSettings.renderer);
     textures::SpecialsTextures specialsTextures = textures::initSpecials(sdlSettings.renderer);
+
+    // SDL Mixer
+    Mix_Music *music = Mix_LoadMUS("assets/music.mp3");
+    Mix_PlayMusic(music, -1);
 
     while(running) {
         if(player.health == 0) {
