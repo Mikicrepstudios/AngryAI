@@ -24,7 +24,7 @@ When you right click on enemy (no aiming needed, just put cursor over it) your s
 ### Defending guide
 You defending is automatic, but you should keep in mind some things so you can make good strategy:
 #### Attacking
-All AIs have same attack damage `AIs[x].damage = 50 * (1 + (.05 * level));`
+All AIs have same attack damage `AIs[x].damage = 50 * (1 + (.03 * level));`
 #### Specials
 Special bar fills up every successful attack, each AI got its own special attack:
 ##### GPT
@@ -37,9 +37,9 @@ Each 4 successful attacks, Gemini deals betweeen 0 and 200 damage
 It can be deadliest AI out of them all
 #### Health
 ##### GPT
-Formula for GPT's health `AIs[x].maxHealth = 150 * (1 + (.2 * level));`
+Formula for GPT's health `AIs[x].maxHealth = 150 * (1 + (.1 * level));`
 ##### Copilot & Gemini
-Copilot and Gemini share same formula for health `AIs[x].maxHealth = 250 * (1 + (.1 * level));`
+Copilot and Gemini share same formula for health `AIs[x].maxHealth = 250 * (1 + (.06 * level));`
 #### Dodging
 Dodging is automatic (there is chance in every normal attack that you will dodge it)
 ##### GPT

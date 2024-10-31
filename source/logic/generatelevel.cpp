@@ -19,26 +19,26 @@ namespace logic {
         for (int x = 0; x <= 2; x++) {
             if(AIOrder[x] == 1) {
                 AIs[x].type = 1;
-                AIs[x].maxHealth = 150 * (1 + (.2 * level));
+                AIs[x].maxHealth = 150 * (1 + (.1 * level));
                 AIs[x].missChance = 4; // 1 in 4 aka 25%
                 AIs[x].maxCharge = 4;
             }
             else if(AIOrder[x] == 2) {
                 AIs[x].type = 2;
-                AIs[x].maxHealth = 250 * (1 + (.1 * level));
+                AIs[x].maxHealth = 250 * (1 + (.06 * level));
                 AIs[x].missChance = 2; // 1 in 2 aka 50%
                 AIs[x].maxCharge = 3;
             }
             else if(AIOrder[x] == 3) {
                 AIs[x].type = 3;
-                AIs[x].maxHealth = 250 * (1 + (.1 * level));
+                AIs[x].maxHealth = 250 * (1 + (.06 * level));
                 AIs[x].missChance = 2; // 1 in 2 aka 50%
                 AIs[x].maxCharge = 4;
             }
 
             AIs[x].curCharge = 0;
             AIs[x].health = AIs[x].maxHealth;
-            AIs[x].damage = 50 * (1 + (.05 * level));
+            AIs[x].damage = 50 * (1 + (.03 * level));
         }
     }
 }
