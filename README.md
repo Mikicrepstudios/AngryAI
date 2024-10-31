@@ -1,6 +1,7 @@
 # Angry AI
 ## Game for Wierd game jam #6
 #### Made in Mikicrep Game Engine (MCGE)
+[Game URL](https://mikicrep.itch.io/angry-ai)
 
 ### What is game about?
 Game is about killing AIs
