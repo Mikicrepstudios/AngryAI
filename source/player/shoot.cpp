@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cmath>
+
+#include "mf/core.h"
+
 #include "settings.h"
 
 namespace player {
-    void Shoot(settings::SDL_Settings sdlSettings, settings::Bullet &bullet) {
-        SDL_Rect playerRect = {25, sdlSettings.height - 150, 125, 125};
+    void Shoot(core::MF_Window &window, settings::Bullet &bullet) {
+        SDL_Rect playerRect = {25, window.height - 150, 125, 125};
 
         // Calculate player's center position
         int playerCenterX = playerRect.x + playerRect.w / 2;
@@ -15,8 +18,8 @@ namespace player {
         bullet.y = playerCenterY;
 
         // Calculate direction from player's center to mouse position
-        float directionX = static_cast<float>(sdlSettings.mouseX) - playerCenterX;
-        float directionY = static_cast<float>(sdlSettings.mouseY) - playerCenterY;
+        float directionX = static_cast<float>(window.mouseX) - playerCenterX;
+        float directionY = static_cast<float>(window.mouseY) - playerCenterY;
 
         // Calculate distance
         float distance = sqrt(directionX * directionX + directionY * directionY);
