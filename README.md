@@ -1,8 +1,6 @@
-# THIS REPO IS CURRENTLY IN BROKEN STATE... GAME IS EXPIRIENCING ENGINE SWAP
-
 # Angry AI
 ## Game for Wierd game jam #6
-#### Made in Mikicrep Game Engine (MCGE) ----> Mikicrep Framework (IN PROGRESS)
+#### Made in Mikicrep Framework 1.2
 [Game URL](https://mikicrep.itch.io/angry-ai)
 
 ### What is game about?
