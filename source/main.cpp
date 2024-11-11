@@ -6,6 +6,7 @@
 #include <SDL_mixer.h>
 
 #include "mf/core.h"
+#include "mf/sfx.h"
 
 #include "data.h"
 #include "draw.h"
@@ -60,8 +61,8 @@ int main(int argc, char* argv[]) {
     textures::DamageTextures damageTextures = textures::initDamage(window.renderer);
     textures::SpecialsTextures specialsTextures = textures::initSpecials(window.renderer);
 
-    // SDL Mixer
-    Mix_Music *music = Mix_LoadMUS("assets/music.mp3");
+    // Background music
+    sfx::PlayBGMusic("assets/music.mp3");
 
     // Title Screen
     game::titleScreen(window);
