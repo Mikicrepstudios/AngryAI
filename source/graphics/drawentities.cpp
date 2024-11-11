@@ -1,5 +1,4 @@
 #include "SDL2/SDL.h"
-#include <SDL_image.h>
 
 #include "mf/core.h"
 #include "mf/graphics.h"
@@ -9,7 +8,7 @@
 #include "textures.h"
 
 namespace draw {
-    void DrawEntities(core::MF_Window window, data::AI AIs[3], int AIOrder[3], textures::EntityTextures &entityTextures, rects::EntityRects entityRects) {
+    void DrawEntities(core::MF_Window &window, data::AI AIs[3], int AIOrder[3], textures::EntityTextures &entityTextures, rects::EntityRects entityRects) {
         // Draw player
         draw::DrawTextureRect(window.renderer, entityRects.playerRect, entityTextures.playerTexture);
 

@@ -1,6 +1,5 @@
 #include <string>
 #include "SDL2/SDL.h"
-#include <SDL_ttf.h>
 
 #include "mf/core.h"
 #include "mf/colors.h"
@@ -12,7 +11,7 @@ SDL_Rect levelRect = {bg.x, bg.y, bg.w, 100};
 SDL_Rect timeRect = {bg.x, bg.y + 100, bg.w, 100};
 
 namespace draw {
-    void DrawGUI(core::MF_Window window, int level, int timeM, int timeS) {
+    void DrawGUI(core::MF_Window &window, int level, int timeM, int timeS) {
         std::string levelText = "Level: " + std::to_string(level);
 
         std::string timeMtmp = "";
