@@ -17,5 +17,5 @@ namespace draw {
 	extern void DrawShields(settings::SDL_Settings sdlSettings, rects::ShieldRects shieldRects, textures::SpecialsTextures specialsTextures, int shieldedAIOrder[3]);
 
 	// Visuals
-	extern void DrawGUI(settings::SDL_Settings &sdlSettings, int level, int timeM, int timeS);
+	void DrawGUI(core::MF_Window window, int level, int timeM, int timeS);
 }

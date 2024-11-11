@@ -2,8 +2,9 @@
 #include "SDL2/SDL.h"
 #include <SDL_ttf.h>
 
-#include "draw.h"
-#include "settings.h"
+#include "mf/core.h"
+#include "mf/colors.h"
+#include "mf/graphics.h"
 
 SDL_Rect bg = {25, 25, 400, 300};
 
@@ -11,7 +12,7 @@ SDL_Rect levelRect = {bg.x, bg.y, bg.w, 100};
 SDL_Rect timeRect = {bg.x, bg.y + 100, bg.w, 100};
 
 namespace draw {
-    void DrawGUI(settings::SDL_Settings &sdlSettings, int level, int timeM, int timeS) {
+    void DrawGUI(core::MF_Window window, int level, int timeM, int timeS) {
         std::string levelText = "Level: " + std::to_string(level);
 
         std::string timeMtmp = "";
@@ -24,9 +25,9 @@ namespace draw {
 
         std::string timeText = "Time: " + timeMtmp + ":" + timeStmp;
 
-        draw::DrawRect(sdlSettings.renderer, bg, 100, 100, 100);
+        draw::DrawRect(window.renderer, bg, colors::general::lightgray);
 
-        draw::DrawText(sdlSettings.renderer, sdlSettings.font, levelRect, levelText.c_str(), sdlSettings.textColor);
-        draw::DrawText(sdlSettings.renderer, sdlSettings.font, timeRect, timeText.c_str(), sdlSettings.textColor);
+        draw::DrawText(window.renderer, window.font, levelRect, levelText.c_str(), colors::text::whiteTextColor);
+        draw::DrawText(window.renderer, window.font, timeRect, timeText.c_str(), colors::text::whiteTextColor);
     }
 }
