@@ -4,6 +4,7 @@
 
 #include "textures.h"
 
+egfrewtgree // break please
 namespace textures {
     EntityTextures initEntity(SDL_Renderer* &renderer) {
         EntityTextures textures = {};
