@@ -2,7 +2,7 @@
 
 #include "SDL2/SDL.h"
 
-#include "settings.h"
+#include "mf/core.h"
 
 namespace rects {
     struct EntityRects {
@@ -21,6 +21,6 @@ namespace rects {
         SDL_Rect bottomShield = {};
     };
 
-    EntityRects initEntity(settings::SDL_Settings sdlSettings);
-    ShieldRects initShield(settings::SDL_Settings sdlSettings);
+    EntityRects initEntity(core::MF_Window window);
+    ShieldRects initShield(core::MF_Window window);
 }
