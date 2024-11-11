@@ -5,6 +5,8 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 
+#include "mf/core.h"
+
 #include "data.h"
 #include "draw.h"
 #include "game.h"
@@ -15,15 +17,21 @@
 #include "textures.h"
 
 int main(int argc, char* argv[]) {
-    std::cout << "Angry AI - 1.0" << std::endl;
-    std::cout << "Copyright Mikicrep Studios 2024" << std::endl;
-
-    // Important vars
     bool running = true;
-    int fps = 60;
-    int frame = 0;
-    int timeS = 0;
-    int timeM = 0;
+    std::cout << "-------Mikicrep Framework-------" << std::endl
+              << "-------Ver: 1.2.0---------------" << std::endl
+              << "Copyright Mikicrep Studios 2024" << std::endl;
+
+    std::cout << "Angry AI - 2.0" << std::endl
+              << "Copyright Mikicrep Studios 2024" << std::endl;
+
+    // Main stuff
+    std::string title = "Angry AI";
+    core::MF_Window window = {};
+    SDL_Event event = {};
+
+    // Create window
+    if(core::InitWindow(window, title, 1280, 800) == false) running = false;
 
     // Settings
     int level = 0;
@@ -35,7 +43,6 @@ int main(int argc, char* argv[]) {
     int attackedAI = 0;
 
     // Structs
-    settings::SDL_Settings sdlSettings = {};
     settings::Bullet bullet = {};
 
     data::Player player = {};
@@ -44,53 +51,42 @@ int main(int argc, char* argv[]) {
     int shieldedAIOrder[3] = {};
 
     // Rects
-    rects::EntityRects entityRects = rects::initEntity(sdlSettings);
-    rects::ShieldRects shieldRects = rects::initShield(sdlSettings);
-
-    // SDL stuff
-    sdlSettings.window = SDL_CreateWindow("Angry AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sdlSettings.width, sdlSettings.height, 0);
-    sdlSettings.renderer = SDL_CreateRenderer(sdlSettings.window, -1, 0);
-    SDL_Event event = {};
-
-	SDL_Init(SDL_INIT_EVERYTHING);
-	TTF_Init();
-    sdlSettings.font = TTF_OpenFont("assets/font.ttf", 96);
-    IMG_Init(IMG_INIT_PNG);
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    rects::EntityRects entityRects = rects::initEntity(window);
+    rects::ShieldRects shieldRects = rects::initShield(window);
 
     // Textures
-    textures::EntityTextures entityTextures = textures::initEntity(sdlSettings.renderer);
-    textures::AssetsTextures assetsTextures = textures::initAssets(sdlSettings.renderer);
-    textures::DamageTextures damageTextures = textures::initDamage(sdlSettings.renderer);
-    textures::SpecialsTextures specialsTextures = textures::initSpecials(sdlSettings.renderer);
+    textures::EntityTextures entityTextures = textures::initEntity(window.renderer);
+    textures::AssetsTextures assetsTextures = textures::initAssets(window.renderer);
+    textures::DamageTextures damageTextures = textures::initDamage(window.renderer);
+    textures::SpecialsTextures specialsTextures = textures::initSpecials(window.renderer);
 
     // SDL Mixer
     Mix_Music *music = Mix_LoadMUS("assets/music.mp3");
 
     // Title Screen
-    game::titleScreen(sdlSettings);
+    game::titleScreen(window);
     Mix_PlayMusic(music, -1);
 
     while(running) {
         if(player.health == 0) {
             level = 1;
-            logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, timeM, timeS, frame);
+            logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, window.timeM, window.timeS, window.frame);
         }
-        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, timeM, timeS, frame);
+        if(logic::checkForNewLvl(AIs, level)) logic::generateLevel(player, AIs, AIOrder, shieldedAIOrder, level, window.timeM, window.timeS, window.frame);
 
         // Get mouse state
-        SDL_GetMouseState(&sdlSettings.mouseX, &sdlSettings.mouseY);
+        SDL_GetMouseState(&window.mouseX, &window.mouseY);
 
         // Do events
         while(SDL_PollEvent(&event) != 0) {
-            sdlSettings.event = event;
+            window.event = event;
             if(event.type == SDL_QUIT) running = false;
             if(event.type == SDL_KEYDOWN) {
                 if(event.key.keysym.sym == SDLK_ESCAPE) running = false;
             }
 
-            if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) player::Shoot(sdlSettings, bullet);
-            else if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) logic::specialDamageAI(sdlSettings, player, AIs, entityRects, isAttackedAI, attackedAI);
+            if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) player::Shoot(window, bullet);
+            else if(event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) logic::specialDamageAI(window, player, AIs, entityRects, isAttackedAI, attackedAI);
         }
 
         // Logic
@@ -102,21 +98,21 @@ int main(int argc, char* argv[]) {
         if(bulletTouching != 0) logic::damageAI(player, AIs, bulletTouching, player.minDamage, player.maxDamage, bullet, shieldedAIOrder, turn);
 
         // Clear screen
-        SDL_SetRenderDrawColor(sdlSettings.renderer, 0, 0, 0, 0);
-        SDL_RenderClear(sdlSettings.renderer);
+        SDL_SetRenderDrawColor(window.renderer, 0, 0, 0, 0);
+        SDL_RenderClear(window.renderer);
 
         // GUI
-        draw::DrawGUI(sdlSettings, level, timeM, timeS);
+        draw::DrawGUI(window, level, window.timeM, window.timeS);
 
         // Draw stuff
-        draw::DrawTextureRect(sdlSettings.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
-        draw::DrawHPBars(sdlSettings, player, AIs, entityRects);
-        draw::DrawSpecialBars(sdlSettings, player, AIs, entityRects);
-        draw::DrawEntities(sdlSettings, AIs, AIOrder, entityTextures, entityRects);
-        draw::DrawShields(sdlSettings, shieldRects, specialsTextures, shieldedAIOrder);
+        draw::DrawTextureRect(window.renderer, entityRects.bulletRect, assetsTextures.bulletTexture);
+        draw::DrawHPBars(window, player, AIs, entityRects);
+        draw::DrawSpecialBars(window, player, AIs, entityRects);
+        draw::DrawEntities(window, AIs, AIOrder, entityTextures, entityRects);
+        draw::DrawShields(window, shieldRects, specialsTextures, shieldedAIOrder);
 
         // Attack
-        logic::enemyAttack(sdlSettings, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
+        logic::enemyAttack(window, player, AIs, AIOrder, shieldedAIOrder, turn, damageTextures, specialsTextures);
 
         // Player special
         if(isAttackedAI) {
@@ -126,29 +122,20 @@ int main(int argc, char* argv[]) {
             else if(attackedAI == 1) curRect = entityRects.middleEnemyRect;
             else if(attackedAI == 2) curRect = entityRects.bottomEnemyRect;
 
-            draw::DrawTextureRect(sdlSettings.renderer, curRect, specialsTextures.playerSpecial);
+            draw::DrawTextureRect(window.renderer, curRect, specialsTextures.playerSpecial);
 
             attackedAI = 3;
             isAttackedAI = false;
 
-            SDL_RenderPresent(sdlSettings.renderer);
+            SDL_RenderPresent(window.renderer);
             SDL_Delay(750);
         }
 
         // Show stuff
-        SDL_RenderPresent(sdlSettings.renderer);
-        SDL_Delay(1000 / fps);
+        SDL_RenderPresent(window.renderer);
+        SDL_Delay(1000 / window.fps);
 
-        frame++;
-        if(frame == fps) {
-            frame = 0;
-            timeS++;
-
-            if(timeS == 60) {
-                timeS = 0;
-                timeM++;
-            }
-        }
+        core::TimeCount(window);
     }
 
     return 0;
