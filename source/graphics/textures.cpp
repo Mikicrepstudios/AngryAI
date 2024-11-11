@@ -2,29 +2,18 @@
 #include "SDL2/SDL.h"
 #include "SDL_image.h"
 
+#include "mf/core.h"
+
 #include "textures.h"
 
-egfrewtgree // break please
 namespace textures {
     EntityTextures initEntity(SDL_Renderer* &renderer) {
         EntityTextures textures = {};
 
-        SDL_Surface* playerSurface = IMG_Load("assets/player.png");
-        textures.playerTexture = SDL_CreateTextureFromSurface(renderer, playerSurface);
-        SDL_FreeSurface(playerSurface);
-
-
-        SDL_Surface* gptSurface = IMG_Load("assets/gpt.png");
-        textures.gptTexture = SDL_CreateTextureFromSurface(renderer, gptSurface);
-        SDL_FreeSurface(gptSurface);
-
-        SDL_Surface* copilotSurface = IMG_Load("assets/copilot.png");
-        textures.copilotTexture = SDL_CreateTextureFromSurface(renderer, copilotSurface);
-        SDL_FreeSurface(copilotSurface);
-
-        SDL_Surface* geminiSurface = IMG_Load("assets/gemini.png");
-        textures.geminiTexture = SDL_CreateTextureFromSurface(renderer, geminiSurface);
-        SDL_FreeSurface(geminiSurface);
+        textures.playerTexture = core::LoadImg(renderer, "assets/player.png");
+        textures.gptTexture = core::LoadImg(renderer, "assets/gpt.png");
+        textures.copilotTexture = core::LoadImg(renderer, "assets/copilot.png");
+        textures.geminiTexture = core::LoadImg(renderer, "assets/gemini.png");
 
         return textures;
     }
@@ -32,9 +21,7 @@ namespace textures {
     AssetsTextures initAssets(SDL_Renderer* &renderer) {
         AssetsTextures textures = {};
 
-        SDL_Surface* assetsSurface = IMG_Load("assets/bullet.png");
-        textures.bulletTexture = SDL_CreateTextureFromSurface(renderer, assetsSurface);
-        SDL_FreeSurface(assetsSurface);
+        textures.bulletTexture = core::LoadImg(renderer, "assets/bullet.png");
 
         return textures;
     }
@@ -43,27 +30,11 @@ namespace textures {
         DamageTextures textures = {};
 
 
-        SDL_Surface* playerSurface = IMG_Load("assets/playerattack.png");
-        textures.playerAttack = SDL_CreateTextureFromSurface(renderer, playerSurface);
-        SDL_FreeSurface(playerSurface);
-
-
-        SDL_Surface* gptSurface = IMG_Load("assets/gptattack.png");
-        textures.gptAttack = SDL_CreateTextureFromSurface(renderer, gptSurface);
-        SDL_FreeSurface(gptSurface);
-        
-        SDL_Surface* copilotSurface = IMG_Load("assets/copilotattack.png");
-        textures.copilotAttack = SDL_CreateTextureFromSurface(renderer, copilotSurface);
-        SDL_FreeSurface(copilotSurface);
-
-        SDL_Surface* geminiSurface = IMG_Load("assets/geminiattack.png");
-        textures.geminiAttack = SDL_CreateTextureFromSurface(renderer, geminiSurface);
-        SDL_FreeSurface(geminiSurface);
-
-
-        SDL_Surface* dodgedSurface = IMG_Load("assets/dodge.png");
-        textures.dodgedAttack = SDL_CreateTextureFromSurface(renderer, dodgedSurface);
-        SDL_FreeSurface(dodgedSurface);
+        textures.playerAttack = core::LoadImg(renderer, "assets/playerattack.png");
+        textures.gptAttack = core::LoadImg(renderer, "assets/gptattack.png");
+        textures.copilotAttack = core::LoadImg(renderer, "assets/copilotattack.png");
+        textures.geminiAttack = core::LoadImg(renderer, "assets/geminiattack.png");
+        textures.dodgedAttack = core::LoadImg(renderer, "assets/dodge.png");
 
         return textures;
     }
@@ -71,23 +42,10 @@ namespace textures {
     SpecialsTextures initSpecials(SDL_Renderer* &renderer) {
         SpecialsTextures textures = {};
 
-
-        SDL_Surface* playerSurface = IMG_Load("assets/playerspecial.png");
-        textures.playerSpecial = SDL_CreateTextureFromSurface(renderer, playerSurface);
-        SDL_FreeSurface(playerSurface);
-
-
-        SDL_Surface* gptSurface = IMG_Load("assets/gptspecial.png");
-        textures.gptSpecial = SDL_CreateTextureFromSurface(renderer, gptSurface);
-        SDL_FreeSurface(gptSurface);
-        
-        SDL_Surface* copilotSurface = IMG_Load("assets/copilotspecial.png");
-        textures.copilotSpecial = SDL_CreateTextureFromSurface(renderer, copilotSurface);
-        SDL_FreeSurface(copilotSurface);
-
-        SDL_Surface* geminiSurface = IMG_Load("assets/geminispecial.png");
-        textures.geminiSpecial = SDL_CreateTextureFromSurface(renderer, geminiSurface);
-        SDL_FreeSurface(geminiSurface);
+        textures.playerSpecial = core::LoadImg(renderer, "assets/playerspecial.png");
+        textures.gptSpecial = core::LoadImg(renderer, "assets/gptspecial.png");
+        textures.copilotSpecial = core::LoadImg(renderer, "assets/copilotspecial.png");
+        textures.geminiSpecial = core::LoadImg(renderer, "assets/geminispecial.png");
 
         return textures;
     }
