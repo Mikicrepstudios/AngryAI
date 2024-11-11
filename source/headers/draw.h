@@ -12,7 +12,7 @@
 namespace draw {
     // Game
 	void DrawHPBars(core::MF_Window &window, data::Player player, data::AI AIs[3], rects::EntityRects entityRects);
-	extern void DrawSpecialBars(settings::SDL_Settings &sdlSettings, data::Player player, data::AI AIs[3], rects::EntityRects entityRects);
+	void DrawSpecialBars(core::MF_Window &window, data::Player player, data::AI AIs[3], rects::EntityRects entityRects);
     void DrawEntities(core::MF_Window &window, data::AI AIs[3], int AIOrder[3], textures::EntityTextures &entityTextures, rects::EntityRects entityRects);
 	void DrawShields(core::MF_Window &window, rects::ShieldRects shieldRects, textures::SpecialsTextures specialsTextures, int shieldedAIOrder[3]);
 
