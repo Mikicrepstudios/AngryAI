@@ -3,5 +3,5 @@
 #include "mf/core.h"
 
 namespace game {
-    extern void titleScreen(core::MF_Window &window);
+    void titleScreen(core::MF_Window &window);
 }
