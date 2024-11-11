@@ -24,7 +24,7 @@ namespace draw {
 
         std::string timeText = "Time: " + timeMtmp + ":" + timeStmp;
 
-        draw::DrawRect(window.renderer, bg, colors::general::lightgray);
+        draw::DrawRect(window.renderer, bg, colors::general::gray);
 
         draw::DrawText(window.renderer, window.font, levelRect, levelText.c_str(), colors::text::whiteTextColor);
         draw::DrawText(window.renderer, window.font, timeRect, timeText.c_str(), colors::text::whiteTextColor);

@@ -36,7 +36,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "GPT dealt " + std::to_string(AIs[x].damage) + " dmg"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 
@@ -46,7 +46,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "Copilot dealt " + std::to_string(AIs[x].damage) + " dmg"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 
@@ -56,7 +56,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "Gemini dealt " + std::to_string(AIs[x].damage) + " dmg"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 
@@ -74,7 +74,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "GPT spawned shields!"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 
@@ -86,7 +86,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "Copilot dealt 100 dmg"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 
@@ -100,7 +100,7 @@ namespace logic {
 
                             // Text stuff
                             attackText = "Gemini dealt " + std::to_string(dmg) + " dmg"; 
-                            draw::DrawRect(window.renderer, attackTextRect, colors::general::lightgray);
+                            draw::DrawRect(window.renderer, attackTextRect, colors::general::gray);
                             draw::DrawText(window.renderer, window.font, attackTextRect, attackText.c_str(), colors::text::whiteTextColor);
                         }
 

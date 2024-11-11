@@ -30,8 +30,8 @@ namespace game {
             draw::DrawText(window.renderer, window.font, devRect, "Dev: Mikicrep", colors::text::whiteTextColor);
             draw::DrawText(window.renderer, window.font, musicRect, "Music: hipersalam", colors::text::whiteTextColor);
 
-            draw::DrawRect(window.renderer, descRect, colors::general::lightgray);
-            draw::DrawRect(window.renderer, playRect, colors::general::lightgray);
+            draw::DrawRect(window.renderer, descRect, colors::general::gray);
+            draw::DrawRect(window.renderer, playRect, colors::general::gray);
             draw::DrawText(window.renderer, window.font, descRect, "Read game description before playing", colors::text::whiteTextColor);
             draw::DrawText(window.renderer, window.font, playRect, "Press any mouse button to play", colors::text::whiteTextColor);
 
