@@ -8,9 +8,6 @@
 #include "textures.h"
 
 namespace logic {
-    extern int generateRandomNumber(int min, int max);
-    extern bool areRectsTouching(const SDL_Rect& rect1, const SDL_Rect& rect2);
-
     extern int checkForNewLvl(data::AI AIs[3], int &level);
     extern void generateLevel(data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int level, int &timeM, int &timeS, int &frame);
 
