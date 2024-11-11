@@ -2,9 +2,10 @@
 
 #include "SDL2/SDL.h"
 
+#include "mf/core.h"
+
 #include "data.h"
 #include "rects.h"
-#include "settings.h"
 #include "textures.h"
 
 namespace logic {
@@ -15,5 +16,5 @@ namespace logic {
 
     void damageAI(data::Player &player, data::AI AIs[3], int target, int minDamage, int maxDamage, settings::Bullet &bullet, int shieldedAIOrder[3], int &turn);
     void specialDamageAI(core::MF_Window &window, data::Player &player, data::AI AIs[3], rects::EntityRects entityRects, bool &isAttackedAI, int &attackedAI);
-    extern void enemyAttack(settings::SDL_Settings &sdlSettings, data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures);
+    extern void enemyAttack(core::MF_Window &window, data::Player &player, data::AI AIs[3], int AIOrder[3], int shieldedAIOrder[3], int &turn, textures::DamageTextures damageTextures, textures::SpecialsTextures specialsTextures);
 }

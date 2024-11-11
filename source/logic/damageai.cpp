@@ -2,7 +2,6 @@
 #include "mf/logic.h"
 
 #include "data.h"
-//#include "logic.h"
 #include "rects.h"
 #include "settings.h"
 #include "textures.h"
