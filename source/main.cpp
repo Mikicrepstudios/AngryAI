@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 
 #include "mf/core.h"
+#include "mf/graphics.h"
 #include "mf/sfx.h"
 
 #include "data.h"
