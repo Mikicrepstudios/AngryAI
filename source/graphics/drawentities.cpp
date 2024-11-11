@@ -5,8 +5,6 @@
 #include "mf/graphics.h"
 
 #include "data.h"
-#include "draw.h"
-#include "settings.h"
 #include "rects.h"
 #include "textures.h"
 
