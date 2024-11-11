@@ -3,7 +3,6 @@
 #include "SDL2/SDL.h"
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include <SDL_mixer.h>
 
 #include "mf/core.h"
 #include "mf/sfx.h"
@@ -66,7 +65,6 @@ int main(int argc, char* argv[]) {
 
     // Title Screen
     game::titleScreen(window);
-    Mix_PlayMusic(music, -1);
 
     while(running) {
         if(player.health == 0) {
